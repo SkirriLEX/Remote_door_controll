@@ -6,15 +6,15 @@
 
 #define DEBUG
 
-#define PIN_C1_BUTTONS 8
-#define PIN_C2_BUTTONS 9
-#define PIN_R1_BUTTONS 7
-#define PIN_R2_BUTTONS 6
+#define PIN_C1_BUTTONS A2
+#define PIN_C2_BUTTONS 8
+#define PIN_R1_BUTTONS 3
+#define PIN_R2_BUTTONS 4
 #define PIN_R3_BUTTONS 5
-#define PIN_R4_BUTTONS 4
-#define PIN_R5_BUTTONS 3
+#define PIN_R4_BUTTONS 6
+#define PIN_R5_BUTTONS 7
 #define PIN_LED        2
-#define NUM_LEDS       8
+#define NUM_LEDS       10
 #define RADIO_ADDRESS  "1N"
 
 int pinC_button [] = {PIN_C1_BUTTONS, PIN_C2_BUTTONS};
@@ -57,20 +57,12 @@ void setup() {
 }
 
 void Send_radio (byte id){
-  radio.write(&id, sizeof(id));
+  //radio.write(&id, sizeof(id));
 }
+
 void led_blink (byte id){
-  int led_id = 0;
-  Serial.println(id);
-
-  if (!id%5){
-    led_id = (id*2)-10;
-  } else {
-    led_id = (id*2)+1;
-  }
-  Serial.println(led_id);
-
-  leds[led_id] = CRGB(255,255,0);
+  int led_id = (8-((id%5)*2)) + (id/5);
+  leds[led_id] = CRGB(10,10,0);
   FastLED.show();
   delay(100);
   leds[led_id] = CRGB::Black;
@@ -100,19 +92,7 @@ void Check_Button() {
 }
 
 void loop() {
-  // for(int whiteLed = 0; whiteLed < NUM_LEDS; whiteLed = whiteLed + 1) {
-  //     // Turn our current led on to white, then show the leds
-  //     leds[whiteLed] = CRGB(255,255,0);
-
-  //     // Show the leds (only one of which is set to white, from above)
-  //     FastLED.show();
-
-  //     // Wait a little bit
-  //     delay(100);
-
-  //     // Turn our current led back to black for the next loop around
-  //     leds[whiteLed] = CRGB::Black;
-  //  }
+  
 
 //  for (int i = 20; i < 30 ; i++) {
 //    counter = i;
