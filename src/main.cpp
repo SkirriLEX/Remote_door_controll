@@ -19,9 +19,8 @@
 #define T_END_LIM_MIN 20
 #define T_END_LIM_MAX 100
 
-#ifdef DEBUG
+#include <Arduino.h>
 #include "printf.h"
-#endif
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
