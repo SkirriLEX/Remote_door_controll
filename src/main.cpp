@@ -41,23 +41,23 @@ void setup() {
   }
   digitalWrite(PIN_C2_BUTTONS, LOW);
   digitalWrite(PIN_C1_BUTTONS, HIGH);
-  // radio.begin();
-  // radio.setRetries(0, 1);    //(время между попыткой достучаться, число попыток)
-  // radio.enableAckPayload();    //разрешить отсылку данных в ответ на входящий сигнал
-  // radio.setPayloadSize(1);     //размер пакета, в байтах
+  radio.begin();
+  radio.setRetries(0, 1);    //(время между попыткой достучаться, число попыток)
+  radio.enableAckPayload();    //разрешить отсылку данных в ответ на входящий сигнал
+  radio.setPayloadSize(1);     //размер пакета, в байтах
 
-  // radio.openWritingPipe(rxAddr);   //мы - труба 0, открываем канал для передачи данных
-  // radio.setChannel(0x60);  //выбираем канал (в котором нет шумов!)
+  radio.openWritingPipe(rxAddr);   //мы - труба 0, открываем канал для передачи данных
+  radio.setChannel(0x60);  //выбираем канал (в котором нет шумов!)
 
-  // radio.setPALevel (RF24_PA_MAX); //уровень мощности передатчика. На выбор RF24_PA_MIN, RF24_PA_LOW, RF24_PA_HIGH, RF24_PA_MAX
-  // radio.setDataRate (RF24_250KBPS); //скорость обмена. На выбор RF24_2MBPS, RF24_1MBPS, RF24_250KBPS
+  radio.setPALevel (RF24_PA_MAX); //уровень мощности передатчика. На выбор RF24_PA_MIN, RF24_PA_LOW, RF24_PA_HIGH, RF24_PA_MAX
+  radio.setDataRate (RF24_250KBPS); //скорость обмена. На выбор RF24_2MBPS, RF24_1MBPS, RF24_250KBPS
   // //должна быть одинакова на приёмнике и передатчике!
   // //при самой низкой скорости имеем самую высокую чувствительность и дальность!!
 
 }
 
 void Send_radio (byte id){
-  //radio.write(&id, sizeof(id));
+  radio.write(&id, sizeof(id));
 }
 
 void led_blink (byte id){
