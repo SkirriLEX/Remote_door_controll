@@ -9,11 +9,11 @@
 
 #define PIN_C1_BUTTONS A2
 #define PIN_C2_BUTTONS 8
-#define PIN_R1_BUTTONS 3
-#define PIN_R2_BUTTONS 4
+#define PIN_R1_BUTTONS 7
+#define PIN_R2_BUTTONS 6
 #define PIN_R3_BUTTONS 5
-#define PIN_R4_BUTTONS 6
-#define PIN_R5_BUTTONS 7
+#define PIN_R4_BUTTONS 4
+#define PIN_R5_BUTTONS 3
 #define PIN_LED        2
 #define NUM_LEDS       10
 #define RADIO_ADDRESS  "1N"
@@ -62,7 +62,7 @@ void Send_radio (byte id){
 }
 
 void led_blink (byte id){
-  int led_id = (8-((id%5)*2)) + (id/5);
+  int led_id = ((id%5)*2) + (id/5);
   leds[led_id] = CRGB(10,10,0);
   FastLED.show();
   delay(100);
